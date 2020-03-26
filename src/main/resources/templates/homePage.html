@@ -1,0 +1,289 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+
+<head>
+    <title>Convenient Canteen</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+<!--    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body >
+<div  class="col-lg-12 col-sm-12 col-md-12 col-xs-12" id="screen"   >
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">美食<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">评价讨论</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="搜索美食">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li th:if="${session.user == null}"><a href="https://github.com/login/oauth/authorize?client_id=d1d6c994ccc47b557475&redirect_uri=http://localhost:8889/callback&scope=user&state=1">登录</a></li>
+                <li class="dropdown" th:if="${session.user != null}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">消息中心</a></li>
+                        <li><a href="#">个人资料</a></li>
+                        <li><a href="#">退出登录</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+    <div id="seats">
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3" >
+        <button type="button" v-bind:class="array[0].bucss" v-on:click="buttonClick(0)" :disabled="array[0].disa">01</button> &nbsp;
+        <button type="button" :class="array[1].bucss" @click="buttonClick(1)" :disabled="array[1].disa">02</button> &nbsp;
+        <button type="button" :class="array[2].bucss" @click="buttonClick(2)" :disabled="array[2].disa">03</button>&nbsp;
+        <button type="button" :class="array[3].bucss" @click="buttonClick(3)" :disabled="array[3].disa">01</button>
+        <br><br>
+        <button type="button" class="btn btn-default"  >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+    <br> <br>
+    <br>
+</div>
+
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button> &nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button> &nbsp;
+        <button type="button" class="btn btn-danger" disabled ="disabled">01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+    <br> <br>
+    <br>
+</div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <button type="button" class="btn btn-default" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-default" >01</button>
+        <br><br>
+        <button type="button" class="btn btn-default" >02</button> &nbsp;
+        <button type="button" class="btn btn-default" >03</button>&nbsp;
+        <button type="button" class="btn btn-danger" >01</button> &nbsp;
+        <button type="button" class="btn btn-default" >02</button>
+    </div>
+<br> <br>
+<br>
+        {{width}}
+        {{bcss}}
+    </div>
+</div>
+{{width}}
+{{bcss}}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    window.onload= () => {
+        var scr = new Vue({
+            el: "#screen",
+            data: {
+                width: document.body.clientWidth,
+                transform: "transform: rotate(90deg)"
+            },
+            methods: {
+                ismobile: function () {
+                    if (width <= 768) {
+                        transform = 'transform: rotate(90deg)'
+                    }
+
+                }
+            }
+
+        })
+    }
+    </script>
+
+    <script>
+    var sreats = new Vue({
+        el:"#seats",
+        methods:{
+            buttonClick(p1) {
+
+                this.array[p1].bucss='btn btn-danger';
+                    this.array[p1].diap='true';
+                console.log(this.array[p1]);
+            }
+        },
+        data:{
+            attr :{
+                bucss:'ss',
+                disp:'aa'
+            },
+            array:[
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},
+                {bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'},{bucss:'btn btn-default',disp:'false'}
+
+            ],
+
+            arr:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+
+        },
+
+
+    })
+</script>
+
+
+
+</body>
+</html>

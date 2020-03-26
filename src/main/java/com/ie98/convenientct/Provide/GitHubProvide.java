@@ -1,8 +1,9 @@
-package com.exmaple.Demo.Provide;
+package com.ie98.convenientct.Provide;
 
 import com.alibaba.fastjson.JSON;
-import com.exmaple.Demo.dto.AccessTokenDTO;
-import com.exmaple.Demo.dto.GitHubUser;
+
+import com.ie98.convenientct.dto.AccessTokenDTO;
+import com.ie98.convenientct.dto.GitHubUser;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 

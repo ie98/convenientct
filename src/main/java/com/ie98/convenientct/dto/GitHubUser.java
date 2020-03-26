@@ -1,4 +1,4 @@
-package com.exmaple.Demo.dto;
+package com.ie98.convenientct.dto;
 
 public class GitHubUser {
     private String id;

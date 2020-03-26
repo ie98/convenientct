@@ -1,11 +1,11 @@
-package com.exmaple.Demo.controller;
+package com.ie98.convenientct.controller;
 
-import com.exmaple.Demo.Provide.GitHubProvide;
-import com.exmaple.Demo.dto.AccessTokenDTO;
-//import org.graalvm.compiler.nodes.memory.Access;
-import com.exmaple.Demo.dto.GitHubUser;
-import com.exmaple.Demo.mapper.UserMapper;
-import com.exmaple.Demo.model.User;
+
+import com.ie98.convenientct.Provide.GitHubProvide;
+import com.ie98.convenientct.dto.AccessTokenDTO;
+import com.ie98.convenientct.dto.GitHubUser;
+import com.ie98.convenientct.mapper.UserMapper;
+import com.ie98.convenientct.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -58,7 +58,7 @@ public class AuthorizeController {
             userMapper.insert(tempuser);
        //     request.getSession().setAttribute("user",user);
             response.addCookie(new Cookie("token" , Token));
-            return "redirect:/" ;
+            return "redirect:homePage" ;
         }else {
             return "redirect:/" ;
         }

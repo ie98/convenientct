@@ -1,15 +1,14 @@
-package com.exmaple.Demo.controller;
+package com.ie98.convenientct.controller;
 
-import com.exmaple.Demo.mapper.QuestionMapper;
-import com.exmaple.Demo.model.Question;
-import com.exmaple.Demo.model.User;
+import com.ie98.convenientct.mapper.QuestionMapper;
+import com.ie98.convenientct.model.Question;
+import com.ie98.convenientct.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 import javax.servlet.http.HttpServletRequest;
 

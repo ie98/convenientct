@@ -1,18 +1,18 @@
-package com.exmaple.Demo.controller;
+package com.ie98.convenientct.controller;
 
-import com.exmaple.Demo.mapper.UserMapper;
-import com.exmaple.Demo.model.User;
+
+import com.ie98.convenientct.mapper.UserMapper;
+import com.ie98.convenientct.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-
+@CrossOrigin
 @Controller
-public class IndexController {
+public class LoginController {
     @Autowired
     private UserMapper userMapper;
     @GetMapping("/")
@@ -32,7 +32,7 @@ public class IndexController {
             }
         }
 
-        return "index";
+        return "login";
 
     }
 }

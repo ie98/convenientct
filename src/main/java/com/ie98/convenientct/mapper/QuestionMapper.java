@@ -1,6 +1,6 @@
-package com.exmaple.Demo.mapper;
+package com.ie98.convenientct.mapper;
 
-import com.exmaple.Demo.model.Question;
+import com.ie98.convenientct.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;

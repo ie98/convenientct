@@ -1,6 +1,7 @@
-package com.exmaple.Demo.mapper;
+package com.ie98.convenientct.mapper;
 
-import com.exmaple.Demo.model.User;
+
+import com.ie98.convenientct.model.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 

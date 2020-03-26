@@ -1,4 +1,4 @@
-package com.exmaple.Demo.model;
+package com.ie98.convenientct.model;
 
 public class User {
     private  int id ;
